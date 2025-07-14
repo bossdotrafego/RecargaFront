@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pagamento Pix — Plano Mensal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #d61625; --dark: #222; --white: #fff;
+      --gray: #666; --radius: 6px; --maxW: 480px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Montserrat', sans-serif; background: #f5f5f5; color: var(--dark); line-height: 1.4; }
+    .container { width: 100%; max-width: var(--maxW); margin: 20px auto; padding: 0 15px; }
+    header { background: var(--red); padding: 10px 0; }
+    header .container { display: flex; align-items: center; justify-content: space-between; }
+    nav ul { list-style: none; display: flex; gap: 15px; }
+    nav a { color: #fff; font-weight: 600; }
+    .top-banner { height: 4px; background: var(--red); }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); margin-top: 20px; overflow: hidden; }
+    .card-image { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; background: #f5f5f5; }
+    .card-image img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .card-header { background: var(--red); color: #fff; text-align: center; padding: 12px; font-size: 1.1rem; }
+    .card-body { padding: 20px; }
+    h2.form-title { text-align: center; margin-bottom: 15px; font-weight: 600; }
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; margin-bottom: 4px; font-size: .9rem; color: var(--dark); }
+    .form-group input { width: 100%; padding: 10px; font-size: 1rem; border: 1px solid #ccc; border-radius: var(--radius); transition: border-color .2s; }
+    .form-group input:focus { outline: none; border-color: var(--red); }
+    .btn { width: 100%; padding: 12px; background: var(--red); color: #fff; border: none; border-radius: var(--radius); font-size: 1rem; margin-top: 10px; cursor: pointer; transition: opacity .2s; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/"><img src="images/logo.png" alt="UniTV Logo" height="40"></a>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#planos-unitv">Planos</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="top-banner"></div>
+  <div class="container">
+    <div class="card">
+      <div class="card-image">
+        <img src="images/card1.jpeg" alt="PLANO MENSAL 30 DIAS">
+      </div>
+      <div class="card-header">
+        PLANO MENSAL 30 DIAS — R$ 24,90
+      </div>
+      <div class="card-body">
+        <h2 class="form-title">Dados Pessoais</h2>
+        <!-- CORREÇÃO FEITA AQUI -->
+        <form id="formCliente" method="post" action="gerar-pix.php" novalidate="">
+          <input type="hidden" name="pacote_id" value="MENSAL_30">
+          <input type="hidden" name="pacote_nome" value="PLANO MENSAL 30 DIAS">
+          <input type="hidden" name="pacote_preco" value="24.90">
+          <div class="form-group">
+            <label for="cli_nome">Nome completo</label>
+            <input type="text" id="cli_nome" name="cli_nome" required="" placeholder="Seu nome completo">
+          </div>
+          <div class="form-group">
+            <label for="cli_email">E-mail</label>
+            <input type="email" id="cli_email" name="cli_email" required="" placeholder="seu@exemplo.com">
+          </div>
+          <div class="form-group">
+            <label for="cli_cpf">CPF</label>
+            <input type="text" id="cli_cpf" name="cli_cpf" required="" placeholder="000.000.000-00">
+          </div>
+          <button type="submit" class="btn" id="btnGerar">Gerar Pix</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body></html>
